@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo Ping-Pong</title>
+    <style>
+        *{
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <canvas></canvas>
@@ -11,13 +18,59 @@
         const canvasE1 = document.querySelector("canvas"),
         canvasCtx = canvasE1.getContext("2d")
 
+        const lineWidth = 15
+
         function setup(){
             canvasE1.width = canvasCtx.width = window.innerWidth
             canvasE1.height = canvasCtx.height = window.innerHeight
         }
-        function draw(){}
+        function draw(){
+            // desenho do campo
+            canvasCtx.fillStyle = "#286047"
+            canvasCtx.fillRect(0 , 0, window.innerWidth, window.innerHeight)
+            
+            // desenho linha central
+            canvasCtx.fillStyle = "#ffffff"
+
+            canvasCtx.fillRect(
+                window.innerWidth / 2 - lineWidth / 2,
+                0,
+                lineWidth,
+                window.innerHeight
+            )
+
+            //desenho raquete esquerda
+
+            canvasCtx.fillRect(10, 100, lineWidth, 200)
+
+            // desenho raquete direita
+
+            canvasCtx.fillRect(
+                window.innerWidth - lineWidth - 10,
+                200,
+                lineWidth,
+                200
+            )
+
+            // desenho da bolinha
+
+            canvasCtx.beginPath()
+            canvasCtx.arc(200, 300, 20, 0, 2 * Math.PI, false)
+            canvasCtx.fill()
+            
+
+            //desenho placar
+
+            canvasCtx.font = "bold 72px Arial"
+            canvasCtx.textAlign = "center"
+            canvasCtx.textBaseline = "top"
+            canvasCtx.fillStyle = '#01341D'
+            canvasCtx.fillText('3', window.innerWidth / 4, 50)
+            canvasCtx.fillText('1', window.innerWidth / 4 + window.innerWidth / 2 , 50)
+        }
 
         setup()
+        draw()
     </script>
 </body>
 </html>
